@@ -6,6 +6,8 @@ public class Scorecard{
    
    public Scorecard(){
       //TODO create all 13 categories for the scorecard
+      scoreList = new ArrayList<Category>();
+      scoreList.add(new CategoryOnes("ones"));
    }
 
    public int calculateCategoryScore(Category category, List<Die> dice){
