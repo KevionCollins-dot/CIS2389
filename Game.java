@@ -40,6 +40,7 @@ public class Game{
          }
          System.out.println(Arrays.toString(intChoice));
          count++;
+         //TODO given the array intChoice if it does not contain zero then reroll the appropriate dice
       }while(count < 3 and intChoice[0] != 0);
       //Now that the rolls are done, show the available options to put in the scorecard
       //Have the user select an option and update the score
