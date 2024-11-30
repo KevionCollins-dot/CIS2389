@@ -7,11 +7,11 @@ public class Player{
       scorecard = new Scorecard();
    }
    
-   public void rollDice(){
-      ;
+   public Scorecard getScorecard(){
+      return scorecard;
    }
    
-   public void selectCategory(Category category){
-      ;
+   public String toString(){
+      return name + ": "+ scorecard.getOverallScore();
    }
 }

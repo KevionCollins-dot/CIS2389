@@ -15,4 +15,8 @@ public class Die{
    public int getFaceValue(){
       return faceValue;
    }
+   
+   public String toString(){
+      return ""+faceValue;
+   }
 }
