@@ -30,20 +30,31 @@ public class Game{
          d.roll();
       }
       int count = 0;
+      int[] intChoice = new int[0];
       do{//do while to limit the number of rerolls
          System.out.println("Dice = "+dice);
-         System.out.print("Enter index of dice to reroll or zero to keep all: ");
+         System.out.print("Enter index of dice to reroll or -1 to keep all: ");
          String[] strChoice = keyboard.nextLine().split(",");
-         int[] intChoice = new int[strChoice.length];
+         intChoice = new int[strChoice.length];
          for(int i=0; i<strChoice.length; i++){
             intChoice[i] = Integer.parseInt(strChoice[i]);
          }
          System.out.println(Arrays.toString(intChoice));
          count++;
          //TODO given the array intChoice if it does not contain zero then reroll the appropriate dice
-      }while(count < 3 and intChoice[0] != 0);
+      }while(count < 3 && intChoice[0] != -1);
       //Now that the rolls are done, show the available options to put in the scorecard
       //Have the user select an option and update the score
+      System.out.println("Available options are:");
+      ArrayList<Category> availableCategories = currentPlayer.getScorecard().availableCategories();
+      for(int i=0; i<availableCategories.size(); i++){
+         System.out.println((i+1)+") "+availableCategories.get(i));
+      }
+      System.out.print(currentPlayer.getName()+" select an option: ");
+      int selection = keyboard.nextInt();
+      keyboard.nextLine();
+      //TODO based on selection update the scorecard
+       
    }
 
    public void nextTurn(){

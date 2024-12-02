@@ -11,6 +11,10 @@ public class Player{
       return scorecard;
    }
    
+   public String getName(){
+      return name;
+   }
+   
    public String toString(){
       return name + ": "+ scorecard.getOverallScore();
    }

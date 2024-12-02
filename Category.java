@@ -13,7 +13,16 @@ public abstract class Category {
       return value;
    }
 
+   public boolean isAvailable(){
+      return value == -1;
+   }
+   
+   public String toString(){
+      return name;
+   }
+
    public abstract boolean isMatch(List<Die> dice);
    public abstract int calculateScore(List<Die> dice);
+   
 
   }
