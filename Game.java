@@ -40,8 +40,15 @@ public class Game{
             intChoice[i] = Integer.parseInt(strChoice[i]);
          }
          System.out.println(Arrays.toString(intChoice));
+         
+         if(intChoice[0] != -1){
+            for(int i : intChoice) {
+               if(i >= 0 && i < dice.size()){
+                  dice.get(i).roll();
+               }
+            }
+         }
          count++;
-         //TODO given the array intChoice if it does not contain zero then reroll the appropriate dice
       }while(count < 3 && intChoice[0] != -1);
       //Now that the rolls are done, show the available options to put in the scorecard
       //Have the user select an option and update the score
@@ -54,7 +61,9 @@ public class Game{
       int selection = keyboard.nextInt();
       keyboard.nextLine();
       //TODO based on selection update the scorecard
-       
+       Category selectedCategory = availableCategories.get(selection - 1);
+       int score = currentPlayer.getScorecard().calculateCategoryScore(selectedCategory, dice);
+       System.out.println("Score for" + selectedCategory + ": " + score);
    }
 
    public void nextTurn(){
@@ -71,7 +80,11 @@ public class Game{
 
    public void declareWinner(){
       //TODO find and declare winner
-      ;
+      Player winner = players.stream() 
+      .max((p1, p2) -> p1.getScorecard().getOverallScore() - p2.getScorecard().getOverallScore()) 
+      .orElse(null); 
+      if (winner != null) { 
+      System.out.println("Winner is " + winner.getName() + " with a score of " + winner.getScorecard().getOverallScore()); } else { System.out.println("It's a tie!"); }
    }
    
    public Player getCurrentPlayer(){

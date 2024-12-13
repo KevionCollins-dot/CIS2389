@@ -10,22 +10,28 @@ public class Scorecard{
       scoreList = new ArrayList<Category>();
       scoreList.add(new CategoryOnes("ones"));                       //add all the ones together
       scoreList.add(new CategoryTwos("twos"));                       //add all the twos together
-      // scoreList.add(new CategoryThrees("threes"));                //add all the threes together
-      // scoreList.add(new CategoryFours("fours"));                  //add all the fours together 
-      // scoreList.add(new CategoryFives("fives"));                  //add all the fives together
-      // scoreList.add(new CategorySixes("sixes"));                  //add all the sixes together
-      // scoreList.add(new CategorySmallStraight("small straight")); //must have four values in a row
-      // scoreList.add(new CategoryLargeStraight("large straight")); //must have five values in a row
+      scoreList.add(new CategoryThrees("threes"));                  //add all the threes together
+      scoreList.add(new CategoryFours("fours"));                    //add all the fours together 
+      scoreList.add(new CategoryFives("fives"));                    //add all the fives together
+      scoreList.add(new CategorySixes("sixes"));                    //add all the sixes together
+      scoreList.add(new CategorySmallStraight("small straight")); //must have four values in a row
+      scoreList.add(new CategoryLargeStraight("large straight")); //must have five values in a row
       scoreList.add(new CategoryFullHouse("full house"));            //must have three of one kind and two of another
-      // scoreList.add(new CategoryThreeOfAKind("three of a kind")); //three dice must be the same but add all 5 dice values together
-      // scoreList.add(new CategoryFourOfAKind("four of a kind"));   //four dice must be the same but add all 5 dice values together
-      // scoreList.add(new CategoryYahtzee("yahtzee"));              //all 5 dice match -> scores 100 points
-      // scoreList.add(new CategoryChance("chance"));                //add all the dice together
+      scoreList.add(new CategoryThreeOfAKind("three of a kind")); //three dice must be the same but add all 5 dice values together
+      scoreList.add(new CategoryFourOfAKind("four of a kind"));   //four dice must be the same but add all 5 dice values together
+      scoreList.add(new CategoryYahtzee("yahtzee"));              //all 5 dice match -> scores 100 points
+      scoreList.add(new CategoryChance("chance"));                //add all the dice together
    }
 
    public int calculateCategoryScore(Category category, List<Die> dice){
       //TODO Update to calculate score
-      return 0;
+      if(! category.isAvailable()){
+         System.out.println("Category already scored. ");
+         return category.getValue();
+      }
+      int score = category.calculateScore(dice);
+      overallScore += score;
+      return score;
    }
 
    public ArrayList<Category> availableCategories(){
